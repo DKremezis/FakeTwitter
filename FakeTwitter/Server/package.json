@@ -1,0 +1,12 @@
+{
+  "name": "fake-twitter",
+  "version": "0.0.0",
+  "description": "FakeTwitter",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": {
+    "name": ""
+  }
+}
