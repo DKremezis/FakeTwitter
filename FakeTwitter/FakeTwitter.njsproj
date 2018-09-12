@@ -32,11 +32,17 @@
     <Compile Include="Server\DatabaseManager.js">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Server\Routes\user.js">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Server\server.js" />
     <Content Include=".babelrc">
       <SubType>Code</SubType>
     </Content>
     <Content Include=".gitignore">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Client\index.html">
       <SubType>Code</SubType>
     </Content>
     <Content Include="package.json" />

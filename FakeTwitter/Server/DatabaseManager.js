@@ -21,13 +21,9 @@ var selectStatement = (attributes, table, whereStatement) => {
     return new Promise((resolve, reject) => {
 
         let values = attributes[0];
-
-        if (attributes.length > 1) {
-
-            for (let i = 1; i < attributes.length; i++) {
-                values = values + ', ' + attributes[i];
-            }
-
+    
+        for (let i = 1; i < attributes.length; i++) {
+            values = values + ', ' + attributes[i];
         }
 
         sequelize.query(`SELECT ${values} from ${table} ${whereStatement}`, { type: sequelize.QueryTypes.SELECT })
@@ -41,6 +37,59 @@ var selectStatement = (attributes, table, whereStatement) => {
 
 }
 
-selectStatement(['userID', 'username', 'email'], 'UsersTable', '').then((result) => {
-    console.log(result);
-});
+
+var insertStatement = (attributes, table) => {
+
+    return new Promise((resolve, reject) => {
+
+        let user = Object.values(attributes);
+
+        let values;
+        if (typeof user[0] === 'string') values = "'" + user[0] + "'" ;
+        else values = user[0];
+
+        for (let i = 1; i < user.length; i++) {
+
+            if (typeof user[i] === 'string') values = values + ", '" + user[i] + "' "; 
+            else values = values + ', ' + user[i];
+        }
+
+        console.log(values);
+        console.log("Here are the values")
+
+        sequelize.query(`Insert into ${table} values(${values}) `, { type: sequelize.QueryTypes.INSERT })
+            .then(result => {
+                resolve(result);
+            }).catch((error) => {
+                console.log(error); 
+                reject('Something went wrong with inserting values into database', error);
+            });
+
+    });
+
+}
+
+module.exports = {
+
+    selectStatement,
+    insertStatement
+
+}
+
+
+//insertStatement({
+//    username: 'VKREMEZIS100',
+//    password: '1234',
+//    email: 'dkrem@gmail.com',
+//    name: 'Dimitris',
+//    lastName: 'Kremezis',
+//    creditCardID: 1,
+//    phoneNumber: 123456789
+//}, 'usersTable').then((result) => {
+//    console.log(result);
+//    }).catch((errorMessage) => {
+
+//        console.log(errorMessage);
+
+//    });
+
