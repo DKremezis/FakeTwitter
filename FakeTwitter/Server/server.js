@@ -6,7 +6,9 @@ const userRouter = require('./Routes/user');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 app.use('/users', userRouter);
+
 
 app.get("/", (request, response) => {
 
