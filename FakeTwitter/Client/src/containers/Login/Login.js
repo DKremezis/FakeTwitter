@@ -21,6 +21,7 @@ class Login extends Component {
       retypePassword: null
     }
   };
+
   signInHandler = event => {
     //   console.log(event.target.name);
     // this.setState(
@@ -45,8 +46,16 @@ class Login extends Component {
     st[event.target.name] = event.target.value;
     this.setState({ signUp: st });
   };
-  signUpSubmit = () =>{
-      console.log(this.state.signUp);
+  async signUpSubmit(){
+    console.log('Getting ready to make request');
+    await axios
+    .post(`http://localhost:5000/users`, this.state.signUp)
+    .then(response => response.data)
+    .then(res => {
+      this.setState({ exist: res.exists });
+    });
+  console.log(this.state.exist);
+      // console.log(this.state.signUp);
     //   axios.post('')
        
   }
