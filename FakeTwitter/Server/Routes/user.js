@@ -1,31 +1,22 @@
-﻿const express = require('express');
-const router = express.Router();
-const dbm = require('./../DatabaseManager');
+const router = require('express').Router();
+
+const { insertStatement, selectStatement } = require('./../db/index');
+
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const myPlaintextPassword = 's0//P4$$w0rD';
 
-router.post('/', (req, res) => {
-  console.log(req.body);
+/* POST the user into the database */
+router.post('/', (req, res) =>  {
+    bcrypt.hash(req.body.password, saltRounds).then((hash) => {
+        req.body.password = hash;
 
-  bcrypt
-    .hash(req.body.password, saltRounds)
-    .then(function(hash) {
-      req.body.password = hash;
-      console.log(hash);
-      console.log(req.body);
-
-      dbm
-        .insertStatement(req.body, 'usersTable')
-        .then(result => {
-          res.status(200).send({ exists: true });
-        })
-        .catch(error => {
-          console.log('something went wrong in the router file');
+        insertStatement(req.body, 'UsersTable').then((result) => {
+            console.log('Data was inserted');
+            res.status(200).send(true);
+        }).catch((error) => {
+            console.log("Something went wrong in the routes/user file");
+            res.status(403);
         });
-    })
-    .catch(error => {
-      console.log('here: ' + error);
     });
 });
 
