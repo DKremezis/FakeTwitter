@@ -32,7 +32,7 @@
     <Compile Include="Server\DatabaseManager.js">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Server\Routes\user.js">
+    <Compile Include="Server\Routes\users.js">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Server\server.js" />

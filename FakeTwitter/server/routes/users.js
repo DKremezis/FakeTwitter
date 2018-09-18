@@ -9,6 +9,7 @@ const saltRounds = 10;
 router.post('/', (req, res) =>  {
     bcrypt.hash(req.body.password, saltRounds).then((hash) => {
         req.body.password = hash;
+        console.log(req.body.password);
 
         insertStatement(req.body, 'UsersTable').then((result) => {
             console.log('Data was inserted');
