@@ -49,15 +49,7 @@ class Login extends Component {
   async signUpSubmit(){
     console.log('Getting ready to make request');
     await axios
-    .post(`http://localhost:5000/users`, {
-      username: 'eric',
-      password: 'password',
-      fname: 'fname',
-      lname: 'lname',
-      email: 'email',
-      phoneNumber: 1234,
-      picture: ''
-    })
+    .post(`http://localhost:5000/users`, this.state.signUp)
     .then(response => response.data)
     .then(res => {
       this.setState({ exist: res.exists });
