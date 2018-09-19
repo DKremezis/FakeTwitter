@@ -12,4 +12,4 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/', indexRouter);
 app.use('/users', userRouter);
 
-module.exports = app;
+app.listen(5000);

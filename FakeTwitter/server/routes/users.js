@@ -13,7 +13,7 @@ router.post('/', (req, res) =>  {
 
         insertStatement(req.body, 'UsersTable').then((result) => {
             console.log('Data was inserted');
-            res.status(200).send(true);
+            res.status(200).send({exists:true});
         }).catch((error) => {
             console.log("Something went wrong in the routes/user file");
             res.status(403);

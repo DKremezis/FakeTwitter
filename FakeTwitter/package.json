@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "babel-node ./server/bin/www"
+    "start": "babel-node ./server/app"
   },
   "keywords": [],
   "author": "",

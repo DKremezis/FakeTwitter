@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "../../components/UI/NavBar/NavBar";
 import LoginForm from "../../components/LoginForm/LoginForm";
 import Aux from "../../hoc/aux";
-import axios from 'axios';
+import axios from "axios";
 
 class Login extends Component {
   state = {
@@ -19,7 +19,7 @@ class Login extends Component {
       email: null,
       password: null,
       retypePassword: null
-    }
+    },
   };
 
   signInHandler = event => {
